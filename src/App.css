@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  height: 60px;
+  padding: 5px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.word-div {
+  display: flex;
+}
+
+p {
+  margin: 8px;
+}
+
+.search-bar {
+  margin: 10px;
+}
+
+.search-bar-input {
+  font-size: 18px;
+  width: 60%;
+}
+
+.word-term {
+  flex: 3;
+  padding-right: 4px;
+  text-align: right;
+  font-weight: bold;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 8px;
+}
+
+.word-description {
+  margin-left: 8px;
+  margin-right: 8px;
+  padding-left: 4px;
+  flex: 7;
+  text-align: left;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
