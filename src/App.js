@@ -43,7 +43,8 @@ class App extends Component {
     if (this.state.searchTerm) {
       currentWords = this.relevantWords();
     } else {
-      currentWords = this.props.words.sort((x, y) => x.term < y.term ? -1 : 1);
+      console.log('sorting');
+      currentWords = this.props.words.sort((x, y) => x.term.toLowerCase() < y.term.toLowerCase() ? -1 : 1);
     }
 
     return (

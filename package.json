@@ -18,5 +18,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "http://shlegeris.com/glossary/build"
+  "homepage": "http://shlegeris.com/glossary"
 }
