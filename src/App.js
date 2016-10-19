@@ -25,6 +25,15 @@ class App extends Component {
     this.fuse = new Fuse(props.words, fuseOptions);
   }
 
+  componentDidMount () {
+    window.onhashchange = (x) => {
+      var url = x.newURL;
+      this.setState({
+        searchTerm: url.substring(url.indexOf('#')+1)
+      });
+    }
+  }
+
   relevantWords () {
     return this.fuse.search(this.state.searchTerm);
   }
@@ -34,13 +43,13 @@ class App extends Component {
     if (this.state.searchTerm) {
       currentWords = this.relevantWords();
     } else {
-      currentWords = this.props.words;
+      currentWords = this.props.words.sort((x, y) => x.term < y.term ? -1 : 1);
     }
 
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Glossary</h2>
+          <h2 onClick={() => { this.setState({searchTerm: ""}); window.location.hash="#"; }}>Glossary</h2>
         </div>
         <div className="search-bar">
           <input
@@ -58,11 +67,15 @@ class App extends Component {
 }
 
 class Word extends Component {
+  description() {
+    return marked(this.props.word.description).replace(/\[([^\]]+)\]/g, (x, y) => "<a href='#"+y+"'>"+y+"</a>")
+  }
+
   render() {
     var word = this.props.word;
     return <div className="word-div">
       <div className="word-term">{word.term}</div>
-      <div className="word-description" dangerouslySetInnerHTML={{__html: marked(word.description)}}></div>
+      <div className="word-description" dangerouslySetInnerHTML={{__html: this.description()}}></div>
     </div>
   }
 }
